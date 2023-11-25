@@ -10,6 +10,8 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
     static char[][] grid = new char[3][3];
     static String turn = "X";
+    static boolean empty = false;
+    static char winner = ' ';
 
     public static void start() {
         for (int i = 0; i < grid.length; i++) {
@@ -34,7 +36,8 @@ public class Main {
 Prompt the user to make a move. The user should input 2 coordinate numbers that represent the cell where
 they want to place their X, for example, 1 1.
  */
-        System.out.println("- Turn " + turn + " - Introduce coordinates: ");
+
+        System.out.print("- Turn " + turn + " - Introduce coordinates: ");
         String input = scanner.nextLine();
         String[] coordinates = input.split(" ");
         int row = 0;
@@ -80,8 +83,6 @@ they want to place their X, for example, 1 1.
 
     private static void analyze(char[][] grid) {
 
-        char winner = ' ';
-
         int[][] combinations = {
                 {0, 0, 0, 1, 0, 2},
                 {1, 0, 1, 1, 1, 2},
@@ -93,8 +94,7 @@ they want to place their X, for example, 1 1.
                 {0, 2, 1, 1, 2, 0},
         };
 
-        for (int i = 0; i < combinations.length; i++) {
-            int[] combination = combinations[i];
+        for (int[] combination : combinations) {
             if (grid[combination[0]][combination[1]] == grid[combination[2]][combination[3]] &&
                     grid[combination[2]][combination[3]] == grid[combination[4]][combination[5]]) {
                 winner = grid[combination[0]][combination[1]];
@@ -102,11 +102,21 @@ they want to place their X, for example, 1 1.
             }
         }
 
-        if (winner == ' ') {
+        for (char[] chars : grid) {
+            for (char aChar : chars) {
+                if (aChar == ' ') {
+                    empty = true;
+                    break;
+                }
+            }
+        }
+
+        if (winner == ' ' && empty) {
             next(grid);
+        } else if (winner == ' ') {
+            System.out.println("Draw");
         } else {
             System.out.println(winner + " wins");
-            System.exit(0);
         }
     }
 }
