@@ -30,8 +30,10 @@ public class Main {
     }
 
     private static void next(char[][] grid) {
-//Prompt the user to make a move. The user should input 2 coordinate numbers that represent the cell where
-// they want to place their X, for example, 1 1.
+/*
+Prompt the user to make a move. The user should input 2 coordinate numbers that represent the cell where
+they want to place their X, for example, 1 1.
+ */
         System.out.println("- Turn " + turn + " - Introduce coordinates: ");
         String input = scanner.nextLine();
         String[] coordinates = input.split(" ");
@@ -98,7 +100,6 @@ public class Main {
                 winner = grid[combination[0]][combination[1]];
                 break;
             }
-            i++;
         }
 
         if (winner == ' ') {
