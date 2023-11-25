@@ -91,8 +91,7 @@ public class Main {
                 {0, 2, 1, 1, 2, 0},
         };
 
-        int i = 0;
-        while (i< combinations.length) {
+        for (int i = 0; i < combinations.length; i++) {
             int[] combination = combinations[i];
             if (grid[combination[0]][combination[1]] == grid[combination[2]][combination[3]] &&
                     grid[combination[2]][combination[3]] == grid[combination[4]][combination[5]]) {
@@ -102,9 +101,9 @@ public class Main {
             i++;
         }
 
-        if (winner == ' '){
+        if (winner == ' ') {
             next(grid);
-        }else{
+        } else {
             System.out.println(winner + " wins");
             System.exit(0);
         }
