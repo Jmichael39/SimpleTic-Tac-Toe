@@ -35,8 +35,8 @@ public class Main {
         System.out.println("- Turn " + turn + " - Introduce coordinates: ");
         String input = scanner.nextLine();
         String[] coordinates = input.split(" ");
-        int coor1 = 0;
-        int coor2 = 0;
+        int row = 0;
+        int column = 0;
 
         if (!input.matches("\\d+( \\d+)*")) {
             System.out.println("You should enter numbers!");
@@ -45,30 +45,30 @@ public class Main {
             System.out.println("Coordinates should be from 1 to 3!");
             next(grid);
         } else {
-            coor1 = Integer.parseInt(coordinates[0]) - 1;
-            coor2 = Integer.parseInt(coordinates[1]) - 1;
+            row = Integer.parseInt(coordinates[0]) - 1;
+            column = Integer.parseInt(coordinates[1]) - 1;
         }
 
         switch (turn) {
             case "X":
-                if (grid[coor1][coor2] != ' ' || grid[coor1][coor2] == 'O') {
+                if (grid[row][column] != ' ' || grid[row][column] == 'O') {
                     System.out.println("This cell is occupied! Choose another one!");
                     next(grid);
                 } else {
                     turn = "O";
-                    grid[coor1][coor2] = 'X';
+                    grid[row][column] = 'X';
                     paintGrid(grid);
                     analyze(grid);
                 }
                 break;
 
             case "O":
-                if (grid[coor1][coor2] != ' ' || grid[coor1][coor2] == 'X') {
+                if (grid[row][column] != ' ' || grid[row][column] == 'X') {
                     System.out.println("This cell is occupied! Choose another one!");
                     next(grid);
                 } else {
                     turn = "X";
-                    grid[coor1][coor2] = 'O';
+                    grid[row][column] = 'O';
                     paintGrid(grid);
                     analyze(grid);
                 }
