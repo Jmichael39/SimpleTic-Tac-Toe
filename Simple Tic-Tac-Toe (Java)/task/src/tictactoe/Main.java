@@ -32,10 +32,10 @@ public class Main {
     }
 
     private static void next(char[][] grid) {
-/*
-Prompt the user to make a move. The user should input 2 coordinate numbers that represent the cell where
-they want to place their X, for example, 1 1.
- */
+    /*
+    Prompt the user to make a move. The user should input 2 coordinate numbers that represent the cell where
+    they want to place their X, for example, 1 1.
+    */
 
         System.out.print("- Turn " + turn + " - Introduce coordinates: ");
         String input = scanner.nextLine();
