@@ -40,8 +40,8 @@ public class Main {
         System.out.print("- Turn " + turn + " - Introduce coordinates: ");
         String input = scanner.nextLine();
         String[] coordinates = input.split(" ");
-        int row = 0;
-        int column = 0;
+        int row;
+        int column;
 
         if (!input.matches("\\d+( \\d+)*")) {
             System.out.println("You should enter numbers!");
@@ -52,32 +52,32 @@ public class Main {
         } else {
             row = Integer.parseInt(coordinates[0]) - 1;
             column = Integer.parseInt(coordinates[1]) - 1;
-        }
 
-        switch (turn) {
-            case "X":
-                if (grid[row][column] != ' ' || grid[row][column] == 'O') {
-                    System.out.println("This cell is occupied! Choose another one!");
-                    next(grid);
-                } else {
-                    turn = "O";
-                    grid[row][column] = 'X';
-                    paintGrid(grid);
-                    analyze(grid);
-                }
-                break;
+            switch (turn) {
+                case "X":
+                    if (grid[row][column] != ' ' || grid[row][column] == 'O') {
+                        System.out.println("This cell is occupied! Choose another one!");
+                        next(grid);
+                    } else {
+                        turn = "O";
+                        grid[row][column] = 'X';
+                        paintGrid(grid);
+                        analyze(grid);
+                    }
+                    break;
 
-            case "O":
-                if (grid[row][column] != ' ' || grid[row][column] == 'X') {
-                    System.out.println("This cell is occupied! Choose another one!");
-                    next(grid);
-                } else {
-                    turn = "X";
-                    grid[row][column] = 'O';
-                    paintGrid(grid);
-                    analyze(grid);
-                }
-                break;
+                case "O":
+                    if (grid[row][column] != ' ' || grid[row][column] == 'X') {
+                        System.out.println("This cell is occupied! Choose another one!");
+                        next(grid);
+                    } else {
+                        turn = "X";
+                        grid[row][column] = 'O';
+                        paintGrid(grid);
+                        analyze(grid);
+                    }
+                    break;
+            }
         }
     }
 
