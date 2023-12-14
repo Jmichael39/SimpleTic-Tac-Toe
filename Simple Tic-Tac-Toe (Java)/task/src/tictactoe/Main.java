@@ -10,8 +10,6 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
     static char[][] grid = new char[3][3];
     static String turn = "X";
-    static boolean empty = false;
-    static char winner = ' ';
 
     public static void start() {
         for (int i = 0; i < grid.length; i++) {
@@ -82,6 +80,9 @@ public class Main {
     }
 
     private static void analyze(char[][] grid) {
+        int empty = 0;
+        char winner = ' ';
+        int nWinners = 0;
 
         int[][] combinations = {
                 {0, 0, 0, 1, 0, 2},
@@ -98,22 +99,25 @@ public class Main {
             if (grid[combination[0]][combination[1]] == grid[combination[2]][combination[3]] &&
                     grid[combination[2]][combination[3]] == grid[combination[4]][combination[5]]) {
                 winner = grid[combination[0]][combination[1]];
+                nWinners = (winner == ' ') ? 0 : 1;
                 break;
             }
         }
 
         for (char[] chars : grid) {
             for (char aChar : chars) {
-                if (aChar == ' ') {
-                    empty = true;
-                    break;
+                if (aChar == ' ' && empty == 0) {
+                    empty++;
                 }
+            }
+            if (empty != 0){
+                break;
             }
         }
 
-        if (winner == ' ' && empty) {
+        if (nWinners == 0 && empty != 0) {
             next(grid);
-        } else if (winner == ' ') {
+        } else if (nWinners == 0) {
             System.out.println("Draw");
         } else {
             System.out.println(winner + " wins");
